@@ -1,4 +1,4 @@
-# proyecto
+# Proyecto PacMan
 
 El grupo esta conformado por: 
 Gabriela Janne Luna (janne_lu)(e8jdelgado01@colsanjose.edu.co), 
