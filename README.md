@@ -1,6 +1,9 @@
 # proyecto
 
-El grupo esta conformado por: Gabriela Janne Luna (janne_lu)(e8jdelgado01@colsanjose.edu.co), Juan David Chaparro ( )(e8jchaparr1@colsanjose.edu.co), Santiago Lopez (santylop2308)(e8slopez1@colsanjose.edu.co)
+El grupo esta conformado por: 
+Gabriela Janne Luna (janne_lu)(e8jdelgado01@colsanjose.edu.co), 
+Juan David Chaparro (juandavid103)(e8jchaparr1@colsanjose.edu.co), 
+Santiago Lopez (santylop2308)(e8slopez1@colsanjose.edu.co)
 
 En este proyecto vamos a hacer un juego inspirado en PacMan.
 El juego PacMan consiste en una bola amarilla que come puntos, 
