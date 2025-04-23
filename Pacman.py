@@ -14,7 +14,6 @@ pygame.display.set_caption("Pac-Man")
 # Colores
 BLANCO = (255, 255, 255)
 NEGRO = (0, 0, 0)
-AMARILLO = (255, 255, 0)
 AZUL = (0, 0, 255)
 ROJO = (255, 0, 0)
 ROSADO = (255, 182, 193)
@@ -23,16 +22,16 @@ NARANJA = (255, 165, 0)
 
 # Cargar imágenes de Pac-Man
 try:
-    pacman_up = pygame.image.load("pacmanup.png")
-    pacman_down = pygame.image.load("pacmandown.png")
-    pacman_left = pygame.image.load("pacmanleft.png")
-    pacman_right = pygame.image.load("pacmanright.png")
+    afanadorabi = pygame.image.load("afanadorabierto.png")
+    afanadorcer = pygame.image.load("afanadorcerrado.png")
+    afanadorabitri = pygame.image.load("afanadorabiertotriste.png")
+    afanadorcertri = pygame.image.load("afanadorcerradotriste.png")
 except pygame.error:
     print("Error: No se pudieron cargar las imágenes de Pac-Man.")
     pygame.quit()
     exit()
 
-pacman = pacman_right  # Imagen inicial
+pacman = afanadorabi  # Imagen inicial
 
 # Tablero (convertido en lista de listas para modificarlo)
 tablero = [
@@ -157,6 +156,7 @@ def game_over():
 
 # Bucle principal del juego
 run = True
+start_time = pygame.time.get_ticks()  # Tiempo de inicio del juego
 while run:
     pygame.time.delay(100)
 
@@ -171,16 +171,12 @@ while run:
 
     if keys[pygame.K_UP]:
         new_y -= pacman_speed
-        pacman = pacman_up
     elif keys[pygame.K_DOWN]:
         new_y += pacman_speed
-        pacman = pacman_down
     elif keys[pygame.K_RIGHT]:
         new_x += pacman_speed
-        pacman = pacman_right
     elif keys[pygame.K_LEFT]:
         new_x -= pacman_speed
-        pacman = pacman_left
 
     # Verificar colisión antes de mover a Pac-Man
     if 0 <= new_y < len(tablero) and 0 <= new_x < len(tablero[0]):
@@ -209,6 +205,19 @@ while run:
             else:
                 pacman_x, pacman_y = 1, 1  # Respawn de Pac-Man
                 break
+
+    # Alternar entre afanadorabi y afanadorcer hasta los 20 segundos
+    elapsed_time = pygame.time.get_ticks() - start_time
+    if elapsed_time < 20000:  # Antes de 20 segundos
+        if (elapsed_time // 500) % 2 == 0:  # Alternancia rápida
+            pacman = afanadorabi
+        else:
+            pacman = afanadorcer
+    else:  # Después de 20 segundos
+        if (elapsed_time // 500) % 2 == 0:  # Alternancia rápida
+            pacman = afanadorabitri
+        else:
+            pacman = afanadorcertri
 
     # Dibujar todo
     screen.fill(NEGRO)
