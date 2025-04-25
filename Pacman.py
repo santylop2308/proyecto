@@ -94,7 +94,7 @@ class Fantasma:
         self.direccion = random.choice(['up', 'down', 'left', 'right'])
         self.img = pygame.Surface((cell_size, cell_size))
         self.img.fill(self.color)
-        self.velocidad = 0.5  # Velocidad reducida para los fantasmas
+        self.velocidad = 1  # Velocidad reducida para los fantasmas
 
     def mover(self, pacman_x, pacman_y):
         posibles_direcciones = ['up', 'down', 'left', 'right']
@@ -154,6 +154,14 @@ def game_over():
     pygame.display.flip()
     pygame.time.delay(2000)
 
+def game_win():
+    screen.fill(NEGRO)
+    game_win_text=font.render("YOU WIN", True, ROJO)
+    score_text = font.render(f"Score: {score}", True, BLANCO)
+    screen.blit(game_win_text, (width // 2 - game_win_text.get_width() // 2, height // 2 - 40))
+    screen.blit(score_text, (width // 2 - score_text.get_width() // 2, height // 2 + 20))
+    pygame.display.flip()
+    pygame.time.delay(2000)
 # Bucle principal del juego
 run = True
 start_time = pygame.time.get_ticks()  # Tiempo de inicio del juego
@@ -233,6 +241,10 @@ while run:
 
     vidas_text = font.render(f'Vidas: {vidas}', True, BLANCO)
     screen.blit(vidas_text, (width - 150, 10))
+
+    if score == 276:
+        game_win()
+        run = False
 
     pygame.display.flip()
 
